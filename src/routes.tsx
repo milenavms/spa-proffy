@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {Switch, BrowserRouter, Route } from 'react-router-dom'
+import {BrowserRouter, Route } from 'react-router-dom'
 import Landing from './pages/Landing'
 import TeacherList from './pages/TeacherList';
 import TeacherForm from './pages/TeacherForm';
