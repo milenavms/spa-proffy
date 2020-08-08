@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../../components/Header'
 import './styles.css'
 import TeacherItem from '../../components/TeacherItem'
+import Input from '../../components/Input'
 
 function TeacherList() {
     return (
@@ -9,21 +10,13 @@ function TeacherList() {
             <Header title="Estes são os proffys disponívéis.">
                 <form id="search-teachers">
 
-                    <div className="input-block">
-                        <label htmlFor="subject"> Matéria </label>
-                        <input type="text" id="subject" />
-                    </div>
-                    <div className="input-block">
-                        <label htmlFor="week_day"> Dia da Semana </label>
-                        <input type="text" id="weel_day" />
-                    </div>
-                    <div className="input-block">
-                        <label htmlFor="time"> Hora </label>
-                        <input type="text" id="time" />
-                    </div>
+                    <Input name="subject" label="Matéria"/>
+                    <Input name="week_day" label="Dia da Semana "/>
+                    <Input type="time" name="time" label="Hora"/>
 
                 </form>
             </Header>
+
             <main>
              <TeacherItem/>
              <TeacherItem/>

@@ -7,6 +7,7 @@ import './styles.css'
 
 interface HeaderProps {
     title: string;
+    description?: string;
 }
 
 // componente em formato de função - CF
@@ -23,6 +24,8 @@ const Header: React.FC<HeaderProps> = (props) => {
             <div className="header-content">
                 <strong>{props.title}</strong>
 
+                {props.description && <p>{props.description}</p>}
+                
                 {props.children}
             </div>
         </header>
