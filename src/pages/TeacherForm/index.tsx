@@ -6,21 +6,23 @@ import Input from '../../components/Input';
 import warningIcon from '../../assets/images/icons/warning.svg'
 import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
+import api from '../../services/api';
+import { useHistory } from 'react-router-dom';
 
 function TeacherForm() {
+    const history = useHistory();
+
     const [name, setName] = useState('');
     const [avatar, setAvatar] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
     const [bio, setBio] = useState('');
     const [subject, setSubject] = useState('');
     const [cost, setCost] = useState('');
+
     const [scheduleItems, setScheduleItems] = useState([
         {
-            week_day: 0, 
-            from: '', 
-            to: '' 
-        }
-    ])
+            week_day: 0, from: '', to: ''}
+    ]);
 
     function addNewScheduleitem() {
         setScheduleItems([
@@ -34,9 +36,40 @@ function TeacherForm() {
 
     }
 
+    function setScheduleValue(position: number, field: string, value: string ){
+        const updateScheduleItems = scheduleItems.map((scheduleItems, index) => {
+            if(index === position){
+                return{ ...scheduleItems, [field]: value};
+            }
+
+            return scheduleItems;
+
+        });
+
+        setScheduleItems(updateScheduleItems);
+    }
+
     function handleCreateClass(e: FormEvent) {
         e.preventDefault();
+
+        api.post('classes', {
+            name, 
+            avatar,
+            whatsapp,
+            bio,
+            subject,
+            cost: Number(cost),
+            schedule: scheduleItems
+        } ).then(() => {
+            alert('Cadastro realizado com sucesso!');
+
+            history.push('/');
+        }).catch(() => {
+            alert('Erro no Cadastro');
+        })
     }
+
+    
 
     return (
         <div id="page-teacher-form" className="container">
@@ -112,12 +145,14 @@ function TeacherForm() {
                             </button>
                         </legend>
 
-                        {scheduleItems.map(scheduleItems => {
+                        {scheduleItems.map((scheduleItems, index) => {
                             return (
                                 <div key={scheduleItems.week_day} className="schedule-item">
                                     <Select
                                         name="week_day"
                                         label="Dia da Semana"
+                                        value={scheduleItems.week_day}
+                                        onChange= { e => setScheduleValue(index, 'week_day', e.target.value)}
                                         options={[
                                             { value: '0', label: 'Domingo' },
                                             { value: '1', label: 'Segunda-Feira' },
@@ -130,8 +165,21 @@ function TeacherForm() {
                                         ]}
                                     />
 
-                                    <Input name="from" label="Das" type="time" />
-                                    <Input name="to" label="Até" type="time" />
+                                    <Input 
+                                        name="from" 
+                                        label="Das" 
+                                        type="time"
+                                        value={scheduleItems.from}
+                                        onChange= { e => setScheduleValue(index, 'from', e.target.value)} 
+                                    />
+
+                                    <Input 
+                                        name="to" 
+                                        label="Até" 
+                                        type="time" 
+                                        value={scheduleItems.to}
+                                        onChange= { e => setScheduleValue(index, 'to', e.target.value)}
+                                    />
                                 </div>
                             )
                         })}
