@@ -2,32 +2,42 @@ import React from 'react';
 import './styles.css';
 import whatsappIcon from  '../../assets/images/icons/whatsapp.svg';
 
-function TeacherItem(){
+export interface Teacher{
+    id: number;
+    avatar: string;
+    bio: string;
+    cost: number;
+    name: string;
+    subject: string;
+    whatsapp: string;
+}
+
+interface TeacherItemProps{
+    teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({teacher}) => {
     return(
         <article className="teacher-item">
             <header>
-                <img src="https://avatars2.githubusercontent.com/u/47642347?s=460&u=c9e1327f95cc1add7318b028f597022beea4bc53&v=4" alt="img" />
+                <img src={teacher.avatar} alt={teacher.name} />
                 <div>
-                    <strong>Milena Vasconcelos</strong>
-                    <span>Química</span>
+                    <strong>{teacher.name}</strong>
+                    <span>{teacher.subject}</span>
                 </div>
             </header>
-            <p>
-                Entusiasta das melhores tecnologias de química avançada
-                <br/>
-                <br/>
-                Apaixonado por explodir coisas me laboratórios e por mudar a vida das pessoas através de experiências
-            </p>
+
+            <p>{teacher.bio}</p>
 
             <footer>
                 <p>
                     Preço/hora: 
-                    <strong> R$ 90,00</strong>
+                    <strong> R$ {teacher.cost}</strong>
                 </p>
-                <button type="button">
+                <a href={'https://wa.me/${teacher.whatsapp}'}>
                 <img src={whatsappIcon} alt="whats"/>
                     Entrar em contato
-                </button>
+                </a>
                
             </footer>
 
