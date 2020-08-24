@@ -18,7 +18,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
  ### Detalhes
  
  - A aplicação foi desenvolvida em Reactjs 
- - As chamada de  api foram feitas com o axios
+ - Para a chamada de api foi utilizado o axios
  - Estilização com CSS
  
   ### Executando
