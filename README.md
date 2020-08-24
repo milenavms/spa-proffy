@@ -7,8 +7,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### Overview
 
- - Esta aplicação apresenta a mesmas funcionalidades básicas que frontend do Projeto Android desenvolvido. Se 
- Comunica com a api disponível em:  - [api](https://github.com/milenavms/api-proffy)
+ - Nesta aplicação é possivel realizar o cadastro de professores para dar aulas e permite que alunos busquem professores e entrem em contato. Esta aplicação se 
+ comunica com a api disponível em:  - [api](https://github.com/milenavms/api-proffy)
  
  ### Funcionalidade
  - Cadastro de professor, horários e disciplina.
