@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react'
+import React, { useState, FormEvent, useEffect } from 'react'
 import Header from '../../components/Header'
 import './styles.css'
 import TeacherItem, {Teacher} from '../../components/TeacherItem'
@@ -13,6 +13,8 @@ function TeacherList() {
     const [subject, setSubject] = useState('');
     const [week_day, setWeekDay] = useState('');
     const [time, setTime] = useState('');
+
+
     
     async function searchTeacher(e: FormEvent){
         e.preventDefault();
